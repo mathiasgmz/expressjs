@@ -12,7 +12,6 @@ app.use(express.text({ type: 'text/html' }));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname,'./views'));
-// Healthcheck endpoint
 app.get('/', (req, res) => {
   res.render('home');
 });
