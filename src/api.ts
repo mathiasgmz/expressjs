@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-
+import { engine } from 'express-handlebars';
 export const app = express();
 
 app.use(cors({ origin: true }));
@@ -9,12 +8,12 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.raw({ type: 'application/vnd.custom-type' }));
 app.use(express.text({ type: 'text/html' }));
-app.set('public', path.join(__dirname, 'public'))
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 // Healthcheck endpoint
 app.get('/', (req, res) => {
-  res.render('index',(err,html) => {
-    console.log(html)
-  });
+  res.render('home');
 });
 
 const api = express.Router();
