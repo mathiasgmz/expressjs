@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { engine } from 'express-handlebars';
-import path from 'path';
 export const app = express();
 
 app.use(cors({ origin: true }));
@@ -11,7 +10,7 @@ app.use(express.raw({ type: 'application/vnd.custom-type' }));
 app.use(express.text({ type: 'text/html' }));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname,'./views'));
+app.set('views', 'views');
 app.get('/', (req, res) => {
   res.render('home');
 });
